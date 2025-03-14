@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index (request):
+    return render(request, 'index.html')
+
+def analyze (request):
 
     team1 = request.POST.get('text', 'default')
     team2 = request.POST.get('team2', 'default')
@@ -14,4 +17,4 @@ def index (request):
     t2pacers = request.POST.get('t2pacers', 'default')
     t2allrounders = request.POST.get('t2allrounders', 'default')
     t2captain = request.POST.get('t2captain', 'default')
-    return render(request, 'index.html')
+    return render(request, 'analyze.html')
