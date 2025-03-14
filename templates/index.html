@@ -21,7 +21,7 @@
         </div>
       </nav>
       <div class="container">
-        <form action="/analyze" method="post">
+        <form action="/analyze" method="post"> {% csrf_token %}
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Team1</label>
         <input name="team1" class="form-control" id="exampleFormControlInput1" placeholder="Team1">

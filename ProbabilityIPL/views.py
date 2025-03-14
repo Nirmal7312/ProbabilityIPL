@@ -17,4 +17,7 @@ def analyze (request):
     t2pacers = request.POST.get('t2pacers', 'default')
     t2allrounders = request.POST.get('t2allrounders', 'default')
     t2captain = request.POST.get('t2captain', 'default')
+
+    print(team1)
+    print(team2)
     return render(request, 'analyze.html')
