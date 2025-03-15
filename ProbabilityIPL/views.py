@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+winner = ''
 def predict_winner(team1, team2, spinners1, pacers1, all_rounders1, captain1,
                     spinners2, pacers2, all_rounders2, captain2, pitch):
+    global winner
     # Weights for each factor
     w_s = 1.2  # Weight for spinners
     w_p = 1.3  # Weight for pacers
@@ -41,10 +42,14 @@ def predict_winner(team1, team2, spinners1, pacers1, all_rounders1, captain1,
     print(f"{team2} Score: {team2_score}")
     
     if team1_score > team2_score:
-        print(f"Predicted Winner: {team1}")
+        winner = team1
+        # print(f"Predicted Winner: {team1}")
+
     elif team2_score > team1_score:
-        print(f"Predicted Winner: {team2}")
+        winner = team2
+        # print(f"Predicted Winner: {team2}")
     else:
+        winner = "Match is expected to be very close!"
         print("Match is expected to be very close!")
 
 
@@ -69,6 +74,7 @@ def analyze (request):
     print(team2)
 
     predict_winner(team1=team1, team2=team2, spinners1=t1spinners, pacers1=t1pacers, all_rounders1=t1allrounders, captain1=t1captain, spinners2=t2spinners, pacers2=t2pacers, all_rounders2=t2allrounders, captain2=t2captain, pitch=pitch)
-
-    return render(request, 'analyze.html')
+    param = {'winner': winner.upper()}
+    print(winner)
+    return render(request, 'analyze.html', param)
 
